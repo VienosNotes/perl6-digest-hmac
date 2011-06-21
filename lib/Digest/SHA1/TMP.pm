@@ -25,7 +25,7 @@ class Digest::SHA1::TMP:auth<vieno>:version<0.1> {
 
     method addfile (Str $filename) {
 
-        $filename.f or die "No such a file.\n";
+        $filename.IO.f or die "No such a file.\n";
 
         my IO $file = open $filename;
         $!data ~= $file.slurp;
