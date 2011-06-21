@@ -34,8 +34,14 @@ class Digest::SHA1::TMP:auth<vieno>:version<0.1> {
         return self;
     }
 
+    method clear {
+        $!data = "";
+        return self;
+    }
+
     method hexdigest returns Str {
-        return qqx{ $!sha_name <<EOF\n$!data\nEOF\n}.chomp;
+        my Str $ret =  qqx{ $!sha_name <<EOF\n$!data\nEOF\n}.chomp;
+        return $ret.substr(0, $ret.chars - 3);
     }
 }
 
